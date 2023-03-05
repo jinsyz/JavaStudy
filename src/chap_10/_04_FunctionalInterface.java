@@ -1,7 +1,6 @@
 package chap_10;
 
-import chap_10.converter.Convertible;
-import chap_10.converter.KRWConverter;
+import chap_10.converter.*;
 
 public class _04_FunctionalInterface {
     public static void main(String[] args) {
@@ -12,6 +11,25 @@ public class _04_FunctionalInterface {
 
         Convertible convertible = (USD) -> System.out.println(USD + " 달러 = " + (USD*1400) + " 원");
         convertUSD(convertible, 2);
+
+        ConvertibleWithNoParams c1 = ()-> System.out.println("1달러 = 1400원");
+        c1.convert();
+
+        c1 = () -> {
+            int USD = 5;
+            int KRW = 1400;
+            System.out.println(USD + " 달러 = " + (USD*1400) + " 원");
+        };
+        c1.convert();
+
+        ConvertibleWithTwoParams c2 = (D, W) -> {
+            System.out.println(D + " 달러 = " + (D*W) + " 원");
+        };
+        c2.convert(10, 1400);
+
+        ConvertibleWithReturn c3 = (D,W) -> {return D*W;};
+        int result = c3.convert(20,1400);
+        System.out.println(result);
     }
 
     public static void convertUSD(Convertible converter, int USD){
