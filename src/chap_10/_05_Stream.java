@@ -25,6 +25,33 @@ public class _05_Stream {
         //중간 연산
         //최종 연산
 
+        Arrays.stream(scores).filter(x -> x >= 90).forEach(x -> System.out.println(x));
+        Arrays.stream(scores).filter(x -> x >= 90).forEach(System.out::println);
+
+        int count = (int)Arrays.stream(scores).filter(x -> x>=90).count();
+        System.out.println(count);
+
+        int sum = Arrays.stream(scores).filter(x -> x >= 90).sum();
+        System.out.println(sum);
+
+        Arrays.stream(scores).filter(x -> x >= 90).sorted().forEach(System.out::println);
+
+        Arrays.stream(langs).filter(x -> x.startsWith("c")).forEach(System.out::println);
+
+        Arrays.stream(langs).filter(x -> x.contains("java")).forEach(System.out::println);
+
+        langList.stream().filter(x -> x.length() <=4).sorted().forEach(System.out::println);
+
+        langList.stream().filter(x -> x.length() <=4).filter(x-> x.contains("c")).forEach(System.out::println);
+
+        boolean anyMatch = langList.stream().filter(x -> x.length() <=4).anyMatch(x -> x.contains("c"));
+        System.out.println(anyMatch);
+
+        boolean allMatch = langList.stream().filter(x -> x.length() <=4).allMatch(x -> x.contains("c"));
+        System.out.println(allMatch);
+
+        langList.stream().filter(x -> x.length() <=4).filter(x -> x.contains("c")).map(x -> x + " 어려워요").forEach(System.out::println);
+        langList.stream().filter(x -> x.contains("c")).map(String::toUpperCase).forEach(System.out::println);
 
     }
 }
